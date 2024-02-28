@@ -14,8 +14,9 @@ class EditStudent extends Component
 
     public UpdateStudentForm $form;
 
-    #[Validate('required')]
     public $class_id;
+
+    public $email;
 
     public function mount()
     {
@@ -23,12 +24,18 @@ class EditStudent extends Component
 
         $this->fill($this->student->only([
             'class_id',
+            'email',
         ]));
     }
 
     public function updateStudent()
     {
-        $this->form->updateStudent($this->class_id);
+        $this->validate([
+            'email' => 'required|email|unique:students,email,' . $this->student->id,
+            'class_id' => 'required',
+        ]);
+
+        $this->form->updateStudent($this->class_id, $this->email);
 
         return $this->redirect(route('students.index'), navigate: true);
     }
