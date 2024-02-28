@@ -20,7 +20,8 @@ class CreateStudent extends Component
 
         $this->form->storeStudent($this->class_id);
         // return redirect(route('students.index'));
-        return $this->redirect(route('students.index'), navigate: true);
+        $this->redirectRoute('students.index');
+        // $this->redirectRoute(route('students.index'), navigate: true);
     }
 
     public function updatedClassId($value)
