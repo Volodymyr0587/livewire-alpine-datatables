@@ -1,7 +1,7 @@
 <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
     <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
         <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
-            <form wire:submit="update">
+            <form wire:submit="updateStudent">
                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                     <div class="bg-white py-6 px-4 space-y-6 sm:p-6">
                         <div>
@@ -16,7 +16,7 @@
                         <div class="grid grid-cols-6 gap-6">
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                                <input type="text" id="name" wire:model="name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('name') text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300 @enderror
+                                <input type="text" id="name" wire:model="form.name" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('name') text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300 @enderror
                                     " />
                                 @error('name')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -26,7 +26,7 @@
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="email" class="block text-sm font-medium text-gray-700">Email
                                     Address</label>
-                                <input type="text" wire:model="email" id="email" autocomplete="email"
+                                <input type="text" wire:model="form.email" id="email" autocomplete="email"
                                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('email') text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300 @enderror" />
                                 @error('email')
                                 <p class="mt-1 text-sm text-red-500">{{ $message }}</p>
@@ -51,10 +51,10 @@
 
                             <div class="col-span-6 sm:col-span-3">
                                 <label for="section_id" class="block text-sm font-medium text-gray-700">Section</label>
-                                <select id="section_id" wire:model="section_id"
+                                <select id="section_id" wire:model="form.section_id"
                                     class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm @error('section_id') text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300 @enderror">
                                     <option value="">Select a Section</option>
-                                    @foreach ($sections as $section)
+                                    @foreach ($form->sections as $section)
                                     <option value="{{ $section->id }}">
                                         {{ $section->name }}
                                     </option>
