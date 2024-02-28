@@ -78,7 +78,10 @@
                                                 class="text-indigo-600 hover:text-indigo-900">
                                                 Edit
                                             </a>
-                                            <button class="ml-2 text-indigo-600 hover:text-indigo-900">
+                                            <button wire:click="deleteStudet({{ $student->id }})" {{--
+                                                wire:confirm.prompt="Are you sure?\n\nType DELETE to confirm|DELETE"
+                                                --}} wire:confirm="Are you sure you want to delete this record?"
+                                                class="ml-2 text-indigo-600 hover:text-indigo-900">
                                                 Delete
                                             </button>
                                         </td>
