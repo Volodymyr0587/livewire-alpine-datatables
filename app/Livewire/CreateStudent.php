@@ -3,6 +3,7 @@
 namespace App\Livewire;
 
 use App\Models\Classes;
+use App\Models\Section;
 use App\Models\Student;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
@@ -21,6 +22,8 @@ class CreateStudent extends Component
     #[Validate('required')]
     public $section_id;
 
+    public $sections = [];
+
 
     public function addStudent()
     {
@@ -29,9 +32,16 @@ class CreateStudent extends Component
         Student::create([
             'name' => $this->name,
             'email' => $this->email,
-            'calss_id' => $this->class_id,
+            'class_id' => $this->class_id,
             'section_id' => $this->section_id,
         ]);
+
+        return redirect(route('students.index'));
+    }
+
+    public function updatedClassId($value)
+    {
+        $this->sections = Section::where('class_id', $value)->get();
     }
 
     public function render()
